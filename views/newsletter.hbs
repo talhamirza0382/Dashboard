@@ -1,0 +1,29 @@
+<div class="container" style="margin-top: 50px;">
+    <h1>Following people want to subscribe to your newsletter</h1>
+    <br>
+    <div class="row">
+        <div class="col-md-9">
+            <div class="card p-4 m-2 alert-danger" style="width: 25rem;">
+
+                <div class="card-body">
+
+                    <ul class="list-group">
+                        {{#each newsletters}}
+
+                        <li class="list-group-item">{{email}}</li>
+                        <button class=" btn-light btn-outline-danger m-2"> <a href="/newsletter/{{_id}}/delete">Delete</a> </button>
+                        <hr>
+                        {{/each}}
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <br><br>
+
+
+</div>
