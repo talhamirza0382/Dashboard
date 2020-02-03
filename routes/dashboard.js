@@ -234,7 +234,7 @@ router.get("/contact", function (req, res, next) {
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db("project1");
-    dbo.collection("contact").find({}).toArray(function (err, contact) {
+    dbo.collection("persons").find({}).toArray(function (err, contact) {
       if (err) throw err;
       db.close();
       res.render("contact", {layout:'dashboardlayout',contact: contact });
@@ -242,6 +242,22 @@ router.get("/contact", function (req, res, next) {
   });
 });
 //-----------
+//delete of contacts
+router.get('/contact/:id/delete',function(req,res,next){
+  let id=req.params.id;
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    let dbo = db.db("project1");
+    dbo.collection('persons').deleteOne({ _id: new ObjectId(id) }, function (err, m) {
+      if (err) throw err;
+      db.close();
+     res.redirect('/contact')
+    })
+  });
+})
+
+
+//---------------
 
 
 // list of people for Newsletter
